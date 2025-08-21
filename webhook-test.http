@@ -1,0 +1,107 @@
+### WhatsApp Webhook Test - Laundry Management System
+### Base URL
+@baseUrl = http://127.0.0.1:8000
+
+### Test 1: Webhook dengan pesan pemesanan valid
+POST {{baseUrl}}/api/whatsapp/webhook
+Content-Type: application/json
+
+{
+  "phone": "6281234567890",
+  "message": "Pesan cuci kering 5kg",
+  "timestamp": "2025-08-20 08:30:00"
+}
+
+### Test 2: Webhook dengan pesan pemesanan lengkap
+POST {{baseUrl}}/api/whatsapp/webhook
+Content-Type: application/json
+
+{
+  "phone": "6289876543210", 
+  "message": "Pesan setrika 3 potong pakaian",
+  "timestamp": "2025-08-20 09:15:00"
+}
+
+### Test 3: Webhook dengan pesan pemesanan cuci + setrika
+POST {{baseUrl}}/api/whatsapp/webhook
+Content-Type: application/json
+
+{
+  "phone": "6281122334455",
+  "message": "Pesan cuci setrika 2kg",
+  "timestamp": "2025-08-20 10:00:00"
+}
+
+### Test 4: Webhook dengan pesan pemesanan dry cleaning
+POST {{baseUrl}}/api/whatsapp/webhook
+Content-Type: application/json
+
+{
+  "phone": "6285566778899",
+  "message": "Pesan dry cleaning 4 potong",
+  "timestamp": "2025-08-20 11:00:00"
+}
+
+### Test 5: Webhook dengan pesan yang tidak valid (tidak terdeteksi sebagai pesanan)
+POST {{baseUrl}}/api/whatsapp/webhook
+Content-Type: application/json
+
+{
+  "phone": "6281234567890",
+  "message": "Halo, apakah toko buka?",
+  "timestamp": "2025-08-20 12:00:00"
+}
+
+### Test 6: Webhook dengan format pesan berbeda
+POST {{baseUrl}}/api/whatsapp/webhook
+Content-Type: application/json
+
+{
+  "phone": "6287654321098",
+  "message": "Order laundry cuci kering untuk 7 kg pakaian",
+  "timestamp": "2025-08-20 13:00:00"
+}
+
+### Test 7: Webhook dengan pesan singkat
+POST {{baseUrl}}/api/whatsapp/webhook
+Content-Type: application/json
+
+{
+  "phone": "6281357924680",
+  "message": "cuci 2kg",
+  "timestamp": "2025-08-20 14:00:00"
+}
+
+### Test 8: Webhook dengan pesan kompleks
+POST {{baseUrl}}/api/whatsapp/webhook
+Content-Type: application/json
+
+{
+  "phone": "6282468135790",
+  "message": "Halo, saya mau pesan cuci setrika untuk 6 potong baju. Kapan bisa diambil?",
+  "timestamp": "2025-08-20 15:00:00"
+}
+
+################################
+### API Testing - CRUD Operations
+################################
+
+### Get All Pesanan
+GET {{baseUrl}}/pesanan
+Accept: application/json
+
+### Get Specific Pesanan
+GET {{baseUrl}}/pesanan/1
+Accept: application/json
+
+### Get All Pelanggan  
+GET {{baseUrl}}/pelanggan
+Accept: application/json
+
+### Get Dashboard Stats
+GET {{baseUrl}}/dashboard
+Accept: application/json
+
+### Check if webhook endpoint is accessible
+GET {{baseUrl}}/api/whatsapp/webhook
+Accept: application/json

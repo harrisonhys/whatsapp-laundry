@@ -1,0 +1,245 @@
+{
+  "info": {
+    "name": "Laundry Management System - WhatsApp Webhook Tests",
+    "description": "Collection untuk testing webhook WhatsApp API pada sistem manajemen laundry",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://127.0.0.1:8000",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Webhook Tests",
+      "item": [
+        {
+          "name": "Test 1 - Cuci Kering Order",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"phone\": \"6281234567890\",\n  \"message\": \"Pesan cuci kering 5kg\",\n  \"timestamp\": \"2025-08-20 08:30:00\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/whatsapp/webhook",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "whatsapp", "webhook"]
+            }
+          }
+        },
+        {
+          "name": "Test 2 - Setrika Only Order", 
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"phone\": \"6289876543210\",\n  \"message\": \"Pesan setrika 3 potong pakaian\",\n  \"timestamp\": \"2025-08-20 09:15:00\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/whatsapp/webhook",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "whatsapp", "webhook"]
+            }
+          }
+        },
+        {
+          "name": "Test 3 - Cuci Setrika Combo",
+          "request": {
+            "method": "POST", 
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"phone\": \"6281122334455\",\n  \"message\": \"Pesan cuci setrika 2kg\",\n  \"timestamp\": \"2025-08-20 10:00:00\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/whatsapp/webhook",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "whatsapp", "webhook"]
+            }
+          }
+        },
+        {
+          "name": "Test 4 - Dry Cleaning Order",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type", 
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"phone\": \"6285566778899\",\n  \"message\": \"Pesan dry cleaning 4 potong\",\n  \"timestamp\": \"2025-08-20 11:00:00\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/whatsapp/webhook",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "whatsapp", "webhook"]
+            }
+          }
+        },
+        {
+          "name": "Test 5 - Invalid Message (No Order)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw", 
+              "raw": "{\n  \"phone\": \"6281234567890\",\n  \"message\": \"Halo, apakah toko buka?\",\n  \"timestamp\": \"2025-08-20 12:00:00\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/whatsapp/webhook",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "whatsapp", "webhook"]
+            }
+          }
+        },
+        {
+          "name": "Test 6 - Alternative Order Format",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"phone\": \"6287654321098\",\n  \"message\": \"Order laundry cuci kering untuk 7 kg pakaian\",\n  \"timestamp\": \"2025-08-20 13:00:00\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/whatsapp/webhook",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "whatsapp", "webhook"]
+            }
+          }
+        },
+        {
+          "name": "Test 7 - Short Message Format",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"phone\": \"6281357924680\",\n  \"message\": \"cuci 2kg\",\n  \"timestamp\": \"2025-08-20 14:00:00\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/whatsapp/webhook",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "whatsapp", "webhook"]
+            }
+          }
+        },
+        {
+          "name": "Test 8 - Complex Message",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"phone\": \"6282468135790\",\n  \"message\": \"Halo, saya mau pesan cuci setrika untuk 6 potong baju. Kapan bisa diambil?\",\n  \"timestamp\": \"2025-08-20 15:00:00\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/whatsapp/webhook",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "whatsapp", "webhook"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "API Tests",
+      "item": [
+        {
+          "name": "Get All Pesanan",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/pesanan",
+              "host": ["{{baseUrl}}"],
+              "path": ["pesanan"]
+            }
+          }
+        },
+        {
+          "name": "Get All Pelanggan",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/pelanggan",
+              "host": ["{{baseUrl}}"],
+              "path": ["pelanggan"]
+            }
+          }
+        },
+        {
+          "name": "Get Dashboard",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/dashboard",
+              "host": ["{{baseUrl}}"],
+              "path": ["dashboard"]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
